@@ -6,6 +6,12 @@ Video sobre angular: https://www.youtube.com/watch?v=VumdXFJ4n7o&t=3850s
 
 Doc do angular: https://angular.dev/tools/cli
 
+### Instalar dependencias
+
+```bash
+npm install
+```
+
 ### Inicar o servidor
 
 ```bash

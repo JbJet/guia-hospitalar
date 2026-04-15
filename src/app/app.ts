@@ -1,13 +1,14 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Field } from './component/field/field';
+import { UploadComponent } from './pages/upload/upload';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Field],
+  standalone: true,
+  imports: [RouterOutlet, UploadComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrl: './app.css'
 })
-export class App {
-  protected readonly title = signal('guia-hospitalar');
+export class AppComponent {
+  title = 'guia-hospitalar';
 }

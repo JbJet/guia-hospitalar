@@ -1,0 +1,12 @@
+<div class="border p-1 flex flex-col w-fit">
+  <span class="font-semibold">{{ fieldIndex }} - {{ fieldName }}</span>
+  <span class="w-full">
+    @for (number of numbers; track $index) {
+      @if (number == fieldSize - 1) {
+        |
+      } @else {
+        |__
+      }
+    }
+  </span>
+</div>

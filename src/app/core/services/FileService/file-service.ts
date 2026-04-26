@@ -2,8 +2,6 @@ import { inject, Injectable, signal } from '@angular/core';
 import { FileSizePipe } from '../../../shared/pipes/file-size-pipe';
 import { Message } from '../../../shared/models/message.interface';
 import { NotificationService } from '../NotificationService/notification-service';
-import { HttpClient } from '@angular/common/http';
-import { StorageService } from '../StorageService/storage-service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +15,7 @@ export class FileService {
     if (files.length == 1) {
       const file = files[0];
       const fileSize = new FileSizePipe();
-      const storageService = inject(StorageService);
+
       const acceptableFileFormats = '.pdf';
 
       if (file.size > 10000000) {
@@ -35,7 +33,6 @@ export class FileService {
           title: 'Arquivo Permitido',
           message: 'Tamanho aceito e formato valido',
         });
-        storageService.uploadToStorage(file);
       }
     } else {
       this.notificationService.showNotification({

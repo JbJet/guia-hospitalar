@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UploadComponent } from './pages/upload/upload';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, UploadComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class AppComponent {
   title = 'guia-hospitalar';

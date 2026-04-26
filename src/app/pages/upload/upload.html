@@ -1,17 +1,34 @@
 <div class="main-container">
-    <div class="text-section">
-        <h1>VISUALIZAR GUIA HOSPITALAR</h1>
-        <p>O processamento leva apenas alguns segundos.</p>
-    </div>
+  <div class="text-section">
+    <h1>VISUALIZAR GUIA HOSPITALAR</h1>
+    <p>O processamento leva apenas alguns segundos.</p>
+  </div>
 
-    <div class="drop-zone">
-        <div class="upload-content">
-            <p>Clique ou arraste o arquivo aqui</p>
-            <div class="file-icon">📄</div>
-            <span class="support-text">
-                Formatos aceitos: PDF, JPEG, PNG.<br>
-                Tamanho máximo: 10MB.
-            </span>
-        </div>
+  <div
+    class="drop-zone"
+    [class.bg-accent]="hasFile()"
+    [class.text-accent-content]="hasFile()"
+    [class.bg-white]="!hasFile()"
+    [class.text-[#999]]="!hasFile()"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragEnd($event)"
+    (drop)="onDrop($event)"
+  >
+    <div class="upload-content pointer-events-none">
+      @if (hasFile()) {
+        <p>Solte para fazer o upload!</p>
+      } @else {
+        <p>Clique ou arraste o arquivo aqui</p>
+      }
+      <div class="file-icon">📄</div>
+      <span class="support-text">
+        Formato aceito: PDF.<br />
+        Tamanho máximo: 10MB.
+      </span>
     </div>
+  </div>
+
+  <div class="absolute w-70 h-50 bottom-0">
+    <app-notifications></app-notifications>
+  </div>
 </div>

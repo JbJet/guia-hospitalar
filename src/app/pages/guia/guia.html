@@ -1,0 +1,755 @@
+<header class="bg-blue-900 text-white shadow-lg relative">
+
+    <div class="max-w-7xl mx-auto py-8 relative flex items-center justify-center">
+
+        <!-- Logo -->
+        <img src="https://uniubepa.com.br/wp-content/uploads/2024/10/logo-uniube.png" alt="Logo"
+            class="h-20 absolute left-6" />
+
+        <!-- Título -->
+        <div class="text-center">
+            <h1 class="text-4xl font-bold">
+                Sistema TISS
+            </h1>
+
+            <p class="text-lg text-slate-300">
+                Guia de Solicitação de Internação
+            </p>
+        </div>
+
+    </div>
+
+</header>
+
+<form class="flex flex-col gap-5 p-4">
+
+    <!-- Dados da Operadora -->
+    <section class="border border-gray-400 bg-white">
+
+        <!-- Cabeçalho -->
+        <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">
+            Dados da Operadora
+        </div>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-12">
+
+            <!-- Registro ANS -->
+            <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    1 - Registro ANS
+                </p>
+
+                <input type="text" id="registroAns" name="registroAns" maxlength="6" required placeholder="000000"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Número da guia no prestador -->
+            <div class="col-span-12 md:col-span-5 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    2 - Número da guia no prestador
+                </p>
+
+                <input type="text" id="numeroGuiaPrestador" name="numeroGuiaPrestador" maxlength="20" required
+                    placeholder="Digite o número da guia"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Número da guia operadora -->
+            <div class="col-span-12 md:col-span-4 border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    3 - Número da guia atribuído pela operadora
+                </p>
+
+                <input type="text" id="numeroGuiaOperadora" name="numeroGuiaOperadora" maxlength="20"
+                    placeholder="Número da operadora"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Data autorização -->
+            <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    4 - Data da autorização
+                </p>
+
+                <input type="date" id="dataAutorizacao" name="dataAutorizacao" required
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Senha -->
+            <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    5 - Senha
+                </p>
+
+                <input type="text" id="senha" name="senha" maxlength="20" placeholder="Senha da autorização"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Data validade senha -->
+            <div class="col-span-12 md:col-span-4 border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    6 - Data de validade da senha
+                </p>
+
+                <input type="date" id="dataValidadeSenha" name="dataValidadeSenha"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Dados do Beneficiário -->
+    <section class="border border-gray-400 bg-white">
+
+        <!-- Cabeçalho -->
+        <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">
+            Dados do Beneficiário
+        </div>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-12">
+
+            <!-- Número da carteira -->
+            <div class="col-span-12 md:col-span-5 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    7 - Número da carteira
+                </p>
+
+                <input type="text" id="numeroCarteira" name="numeroCarteira" maxlength="20" required
+                    placeholder="Número da carteira do beneficiário"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Validade da carteira -->
+            <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    8 - Validade da carteira
+                </p>
+
+                <input type="date" id="validadeCarteira" name="validadeCarteira"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- CNS -->
+            <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    11 - Cartão Nacional de Saúde (CNS)
+                </p>
+
+                <input type="text" id="cartaoNacionalSaude" name="cartaoNacionalSaude" maxlength="15"
+                    placeholder="Número do CNS" class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Atendimento RN -->
+            <div class="col-span-12 md:col-span-1 border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    9 - Atendimento a RN
+                </p>
+
+                <select id="atendimentoRn" name="atendimentoRn" required
+                    class="w-full text-lg font-semibold outline-none bg-transparent">
+                    <option value="">-</option>
+                    <option value="S">Sim</option>
+                    <option value="N">Não</option>
+                </select>
+
+            </div>
+
+            <!-- Nome do beneficiário -->
+            <div class="col-span-12 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    10 - Nome do beneficiário
+                </p>
+
+                <input type="text" id="nomeBeneficiario" name="nomeBeneficiario" maxlength="70" required
+                    placeholder="Digite o nome do beneficiário"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Dados do Contratado Solicitante -->
+    <section class="border border-gray-400 bg-white">
+
+        <!-- Cabeçalho -->
+        <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">
+            Dados do Contratado Solicitante
+        </div>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-12">
+
+            <!-- Código do contratado -->
+            <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    12 - Código do contratado
+                </p>
+
+                <input type="text" id="codigoContratado" name="codigoContratado" maxlength="14" required
+                    placeholder="Código do contratado"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Nome do contratado -->
+            <div class="col-span-12 md:col-span-9 border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    13 - Nome do contratado solicitante
+                </p>
+
+                <input type="text" id="nomeContratado" name="nomeContratado" maxlength="70" required
+                    placeholder="Nome do contratado solicitante"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Nome do profissional solicitante -->
+            <div class="col-span-12 md:col-span-6 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    14 - Nome do profissional solicitante
+                </p>
+
+                <input type="text" id="nomeProfissionalSolicitante" name="nomeProfissionalSolicitante" maxlength="70"
+                    placeholder="Nome do profissional solicitante"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Conselho profissional -->
+            <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    15 - Conselho profissional
+                </p>
+
+                <input type="text" id="conselhoProfissional" name="conselhoProfissional" maxlength="2" required
+                    placeholder="CRM" class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Número no conselho -->
+            <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    16 - Número no conselho
+                </p>
+
+                <input type="text" id="numeroConselho" name="numeroConselho" maxlength="15" required
+                    placeholder="Número do registro" class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- UF -->
+            <div class="col-span-12 md:col-span-1 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    17 - UF
+                </p>
+
+                <input type="text" id="ufConselho" name="ufConselho" maxlength="2" required placeholder="MG"
+                    class="w-full text-lg font-semibold uppercase outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Código CBO -->
+            <div class="col-span-12 md:col-span-1 border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    18 - Código CBO
+                </p>
+
+                <input type="text" id="codigoCbo" name="codigoCbo" maxlength="6" required placeholder="225125"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Dados do Hospital / Local Solicitado / Dados de Internação -->
+    <section class="border border-gray-400 bg-white">
+
+        <!-- Cabeçalho -->
+        <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">
+            Dados do Hospital / Local Solicitado / Dados de Internação
+        </div>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-12">
+
+            <!-- Código na operadora / CNPJ -->
+            <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    19 - Código na operadora / CNPJ
+                </p>
+
+                <input type="text" id="codigoOperadoraCnpj" name="codigoOperadoraCnpj" maxlength="14" required
+                    placeholder="CNPJ ou código" class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Nome hospital/local -->
+            <div class="col-span-12 md:col-span-6 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    20 - Nome do hospital / local
+                </p>
+
+                <input type="text" id="nomeHospitalLocal" name="nomeHospitalLocal" maxlength="70" required
+                    placeholder="Nome do hospital ou local"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Data sugerida -->
+            <div class="col-span-12 md:col-span-3 border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    21 - Data sugerida para internação
+                </p>
+
+                <input type="date" id="dataSugeridaInternacao" name="dataSugeridaInternacao" required
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Caráter atendimento -->
+            <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    22 - Caráter do atendimento
+                </p>
+
+                <select id="caraterAtendimento" name="caraterAtendimento" required
+                    class="w-full text-lg font-semibold outline-none bg-transparent">
+                    <option value="">-</option>
+                    <option value="1">Eletivo</option>
+                    <option value="2">Urgência</option>
+                </select>
+
+            </div>
+
+            <!-- Tipo internação -->
+            <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    23 - Tipo de internação
+                </p>
+
+                <select id="tipoInternacao" name="tipoInternacao" required
+                    class="w-full text-lg font-semibold outline-none bg-transparent">
+                    <option value="">-</option>
+                    <option value="1">Clínica</option>
+                    <option value="2">Cirúrgica</option>
+                </select>
+
+            </div>
+
+            <!-- Regime -->
+            <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    24 - Regime de internação
+                </p>
+
+                <select id="regimeInternacao" name="regimeInternacao" required
+                    class="w-full text-lg font-semibold outline-none bg-transparent">
+                    <option value="">-</option>
+                    <option value="1">Hospitalar</option>
+                    <option value="2">Hospital-dia</option>
+                    <option value="3">Domiciliar</option>
+                </select>
+
+            </div>
+
+            <!-- Quantidade diárias -->
+            <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    25 - Quantidade de diárias
+                </p>
+
+                <input type="number" id="qtdeDiarias" name="qtdeDiarias" min="1" max="99" required placeholder="00"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- OPME -->
+            <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    26 - Previsão de uso de OPME
+                </p>
+
+                <select id="usoOpme" name="usoOpme" required
+                    class="w-full text-lg font-semibold outline-none bg-transparent">
+                    <option value="">-</option>
+                    <option value="S">Sim</option>
+                    <option value="N">Não</option>
+                </select>
+
+            </div>
+
+            <!-- Quimioterápico -->
+            <div class="col-span-12 md:col-span-2 border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    27 - Previsão de uso de quimioterápico
+                </p>
+
+                <select id="usoQuimioterapico" name="usoQuimioterapico" required
+                    class="w-full text-lg font-semibold outline-none bg-transparent">
+                    <option value="">-</option>
+                    <option value="S">Sim</option>
+                    <option value="N">Não</option>
+                </select>
+
+            </div>
+
+            <!-- Indicação clínica -->
+            <div class="col-span-12 border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    28 - Indicação clínica
+                </p>
+
+                <textarea id="indicacaoClinica" name="indicacaoClinica" maxlength="500" required rows="4"
+                    placeholder="Digite a indicação clínica"
+                    class="w-full text-lg font-semibold outline-none resize-none bg-transparent"></textarea>
+
+            </div>
+
+            <!-- CID Principal -->
+            <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    29 - CID10 Principal
+                </p>
+
+                <input type="text" id="cid10Principal" name="cid10Principal" maxlength="4" placeholder="A000"
+                    class="w-full text-lg font-semibold uppercase outline-none bg-transparent" />
+
+            </div>
+
+            <!-- CID 2 -->
+            <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    30 - CID10 (2)
+                </p>
+
+                <input type="text" id="cid10Secundario" name="cid10Secundario" maxlength="4" placeholder="A000"
+                    class="w-full text-lg font-semibold uppercase outline-none bg-transparent" />
+
+            </div>
+
+            <!-- CID 3 -->
+            <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    31 - CID10 (3)
+                </p>
+
+                <input type="text" id="cid10Terceiro" name="cid10Terceiro" maxlength="4" placeholder="A000"
+                    class="w-full text-lg font-semibold uppercase outline-none bg-transparent" />
+
+            </div>
+
+            <!-- CID 4 -->
+            <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    32 - CID10 (4)
+                </p>
+
+                <input type="text" id="cid10Quarto" name="cid10Quarto" maxlength="4" placeholder="A000"
+                    class="w-full text-lg font-semibold uppercase outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Indicação acidente -->
+            <div class="col-span-12 md:col-span-4 border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    33 - Indicação de acidente
+                </p>
+
+                <select id="indicacaoAcidente" name="indicacaoAcidente" required
+                    class="w-full text-lg font-semibold outline-none bg-transparent">
+                    <option value="">-</option>
+                    <option value="0">Não relacionado</option>
+                    <option value="1">Acidente de trânsito</option>
+                    <option value="2">Acidente de trabalho</option>
+                    <option value="3">Outros acidentes</option>
+                </select>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Procedimentos ou Itens Assistenciais Solicitados -->
+    <section class="border border-gray-400 bg-white">
+
+        <!-- Cabeçalho -->
+        <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">
+            Procedimentos ou Itens Assistenciais Solicitados
+        </div>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-12">
+
+            <!-- Tabela -->
+            <div class="col-span-12 md:col-span-1 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    34 - Tabela
+                </p>
+
+                <input type="text" id="tabelaReferencia" name="tabelaReferencia" maxlength="2" required placeholder="00"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Código procedimento -->
+            <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    35 - Código do procedimento
+                </p>
+
+                <input type="text" id="codigoProcedimento" name="codigoProcedimento" maxlength="10" required
+                    placeholder="Código do procedimento"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Descrição -->
+            <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    36 - Descrição
+                </p>
+
+                <input type="text" id="descricaoProcedimento" name="descricaoProcedimento" maxlength="150" required
+                    placeholder="Descrição do procedimento"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Quantidade solicitada -->
+            <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    37 - Qtde Solic
+                </p>
+
+                <input type="number" id="qtdeSolicitada" name="qtdeSolicitada" min="0" max="999" required
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Quantidade autorizada -->
+            <div class="col-span-12 md:col-span-2 border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    38 - Qtde Aut
+                </p>
+
+                <input type="number" id="qtdeAutorizada" name="qtdeAutorizada" min="0" max="999" required
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Dados da Autorização -->
+    <section class="border border-gray-400 bg-white">
+
+        <!-- Cabeçalho -->
+        <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">
+            Dados da Autorização
+        </div>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-12">
+
+            <!-- Data provável admissão -->
+            <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    39 - Data provável da admissão hospitalar
+                </p>
+
+                <input type="date" id="dataAdmissao" name="dataAdmissao"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Qtde diárias autorizadas -->
+            <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    40 - Qtde diárias autorizadas
+                </p>
+
+                <input type="number" id="qtdeDiariasAutorizadas" name="qtdeDiariasAutorizadas" min="0" max="999"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Tipo acomodação -->
+            <div class="col-span-12 md:col-span-4 border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    41 - Tipo da acomodação autorizada
+                </p>
+
+                <input type="text" id="tipoAcomodacao" name="tipoAcomodacao" maxlength="2" placeholder="00"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Código operadora -->
+            <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    42 - Código na operadora
+                </p>
+
+                <input type="text" id="codigoOperadoraAutorizada" name="codigoOperadoraAutorizada" maxlength="14"
+                    placeholder="Código autorizado" class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Hospital autorizado -->
+            <div class="col-span-12 md:col-span-5 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    43 - Nome do hospital / local autorizado
+                </p>
+
+                <input type="text" id="hospitalAutorizado" name="hospitalAutorizado" maxlength="70"
+                    placeholder="Hospital autorizado"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Código CNES -->
+            <div class="col-span-12 md:col-span-3 border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    44 - Código CNES
+                </p>
+
+                <input type="text" id="codigoCnes" name="codigoCnes" maxlength="7" placeholder="Código CNES"
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Observação -->
+            <div class="col-span-12 border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    45 - Observação / Justificativa
+                </p>
+
+                <textarea id="observacaoJustificativa" name="observacaoJustificativa" maxlength="1000" rows="5"
+                    placeholder="Digite observações ou justificativas"
+                    class="w-full text-lg font-semibold outline-none resize-none bg-transparent"></textarea>
+
+            </div>
+
+            <!-- Data solicitação -->
+            <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    46 - Data da solicitação
+                </p>
+
+                <input type="date" id="dataSolicitacao" name="dataSolicitacao" required
+                    class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Assinatura profissional -->
+            <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    47 - Assinatura do profissional solicitante
+                </p>
+
+                <input type="text" id="assinaturaProfissional" name="assinaturaProfissional" required
+                    placeholder="Nome ou assinatura" class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Assinatura beneficiário -->
+            <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    48 - Assinatura do beneficiário ou responsável
+                </p>
+
+                <input type="text" id="assinaturaBeneficiario" name="assinaturaBeneficiario" required
+                    placeholder="Nome ou assinatura" class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+            <!-- Assinatura autorização -->
+            <div class="col-span-12 md:col-span-3 border-b border-gray-400 p-2">
+
+                <p class="text-[11px] font-bold uppercase text-gray-600">
+                    49 - Assinatura do responsável pela autorização
+                </p>
+
+                <input type="text" id="assinaturaAutorizacao" name="assinaturaAutorizacao" required
+                    placeholder="Nome ou assinatura" class="w-full text-lg font-semibold outline-none bg-transparent" />
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Botao -->
+    <div class="md:col-span-2 flex justify-end">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg">
+            Enviar
+        </button>
+    </div>
+
+</form>

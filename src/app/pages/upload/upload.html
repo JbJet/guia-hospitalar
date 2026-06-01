@@ -4,7 +4,7 @@
         <p>O processamento leva apenas alguns segundos.</p>
     </div>
 
-    <div class="drop-zone">
+    <div class="drop-zone" (click)="fileInput.click()">
         <div class="upload-content">
             <p>Clique ou arraste o arquivo aqui</p>
             <div class="file-icon">📄</div>
@@ -13,5 +13,8 @@
                 Tamanho máximo: 10MB.
             </span>
         </div>
+
+        <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none"
+            accept="image/*,application/pdf">
     </div>
 </div>

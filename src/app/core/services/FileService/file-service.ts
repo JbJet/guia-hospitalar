@@ -4,9 +4,12 @@ import { FileSizePipe } from '../../../shared/pipes/file-size-pipe';
 import { Message } from '../../../shared/models/message.interface';
 import { GuiaSADT } from '../../../shared/models/guia-sadt.interface';
 import { NotificationService } from '../NotificationService/notification-service';
+import { environment } from '../../../../environments/environment';
 
 // const API_URL = 'https://backend-guia-production.up.railway.app/';
-const API_URL = 'http://127.0.0.1:8000/';
+
+const API_URL = environment.apiUrl;
+
 const ALLOWED_TYPES = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'];
 const MAX_SIZE_BYTES = 10 * 1024 * 1024;
 

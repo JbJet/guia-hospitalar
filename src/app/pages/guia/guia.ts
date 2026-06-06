@@ -1,10 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
-import { GuiaSADT, Procedimento } from '../../shared/models/guia-sadt.interface';
-import { form, FormField, max } from '@angular/forms/signals';
+import { GuiaSADT } from '../../shared/models/guia-sadt.interface';
+import { form, FormField, FormRoot, max, submit } from '@angular/forms/signals';
 import { FileService } from '../../core/services/FileService/file-service';
 @Component({
   selector: 'app-guia',
-  imports: [FormField],
+  imports: [FormField, FormRoot],
   templateUrl: './guia.html',
   styleUrl: './guia.css',
 })
@@ -69,13 +69,9 @@ export class Guia {
   guiaForm = form(this.guiaModel, (schemaPath) => {
     max(schemaPath.operadora!.registro_ans!, 6); // 1
     max(schemaPath.numero_guia_prestador!, 20); // 2
-    // FALTA 3
+
     max(schemaPath.beneficiario!.numero_carteira!!, 20); // 4
-    max(schemaPath.senha_autorizacao!, 20); //5
-    // 6 FEITO
-    // 7 FEITO
-    // FALTA 8
-    // 9 FEITO
+    max(schemaPath.senha_autorizacao!, 20);
     max(schemaPath.beneficiario!.nome!, 70); // 10
     max(schemaPath.beneficiario!.cns!, 15); // 11
     max(schemaPath.executante!.codigo_na_operadora!, 14); // 12, 19
@@ -85,30 +81,25 @@ export class Guia {
     max(schemaPath.solicitante!.numero_conselho!, 15); // 16
     max(schemaPath.solicitante!.uf_conselho!, 2); // 17
     max(schemaPath.solicitante!.cbo!, 6); // 18
-    // FALTA 21
-    // 22 FEITO
-    // FALTA 23
-    // FALTA 24
-    // FALTA 25
-    // FALTA 26
-    // FALTA 27
-    max(schemaPath.indicacao_clinica!, 500); //28
-    max(schemaPath.cid_principal!, 4); // 29
-    max(schemaPath.cid_principal!, 4); // 30
-    // FALTA 31
-    // FALTA 32
-    // FALTA 33
-    // 34 = IDX, 35= TUSS, 36 = DESC, 37 QTDE, 38QTDE MED
-    // FALTA 39 ?
-    // FALTA 40 ?
-    // FALTA 41 ?
-    // FALTA 42 schemaPath.executante!.codigo_na_operadora
-    // FALTA 43 schemaPath.solicitante!.nome_contratado
-    // FALTA 44 CNES
-    // FALTA 45 ?
-    // FALTA 46 ?
-    // FALTA 47 NAO PRECISA ASSINATURA
-    // FALTA 48 NAO PRECISA ASSINATURA
-    // FALTA 49  NAO PRECISA ASSINATURA
+
+    max(schemaPath.indicacao_clinica!, 500);
+    max(schemaPath.cid_principal!, 4);
+    max(schemaPath.cid_principal!, 4);
   });
+
+  baixarJSON(value = this.guiaModel()) {
+    console.log(this.guiaModel());
+    const json = JSON.stringify(value, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `guia-${value.beneficiario?.nome ?? 'sem-nome'}.json`;
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
 }

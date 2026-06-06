@@ -5,8 +5,8 @@ import { Message } from '../../../shared/models/message.interface';
 import { GuiaSADT } from '../../../shared/models/guia-sadt.interface';
 import { NotificationService } from '../NotificationService/notification-service';
 
-const API_URL = 'https://backend.guia.joaquim.xyz/api';
-
+// const API_URL = 'https://backend-guia-production.up.railway.app/';
+const API_URL = 'http://127.0.0.1:8000/';
 const ALLOWED_TYPES = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'];
 const MAX_SIZE_BYTES = 10 * 1024 * 1024;
 
@@ -25,6 +25,7 @@ export class FileService {
     if (files.length !== 1) {
       this.notificationService.showNotification({
         title: 'Arquivo Negado',
+        type: 'Error',
         message: 'Envie um arquivo por vez',
       });
       return;
@@ -36,6 +37,7 @@ export class FileService {
     if (file.size > MAX_SIZE_BYTES) {
       this.notificationService.showNotification({
         title: 'Arquivo Negado',
+        type: 'Error',
         message: 'Tamanho excede o permitido 10MB (Atual: ' + fileSize.transform(file.size) + ')',
       });
       return;
@@ -44,6 +46,7 @@ export class FileService {
     if (!ALLOWED_TYPES.includes(file.type)) {
       this.notificationService.showNotification({
         title: 'Arquivo Negado',
+        type: 'Error',
         message: 'Envie somente PDF ou imagem (JPG, PNG, WEBP)',
       });
       return;
@@ -55,12 +58,13 @@ export class FileService {
     this.isLoading.set(true);
     this.guiaResult.set(null);
 
-    this.http.post<GuiaSADT>(`${API_URL}/upload`, formData).subscribe({
+    this.http.post<GuiaSADT>(`${API_URL}api/upload`, formData).subscribe({
       next: (guia) => {
         this.guiaResult.set(guia);
         this.isLoading.set(false);
         this.notificationService.showNotification({
           title: 'Extração concluída',
+          type: 'Success',
           message: `Método: ${guia.metodo_extracao} · Confiança: ${((guia.confianca_extracao ?? 0) * 100).toFixed(0)}%`,
         });
       },
@@ -69,6 +73,7 @@ export class FileService {
         const detail = err.error?.detail ?? 'Erro desconhecido';
         this.notificationService.showNotification({
           title: 'Erro na extração',
+          type: 'Error',
           message: detail,
         });
       },

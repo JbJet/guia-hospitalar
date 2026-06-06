@@ -35,3 +35,7 @@
   --depth: 0;
   --noise: 0;
 }
+
+:root {
+  background-color: #f2f2f2;
+}

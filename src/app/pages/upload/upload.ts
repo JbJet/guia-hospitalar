@@ -1,12 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { FileService } from '../../core/services/FileService/file-service';
 import { Notifications } from '../../shared/components/notifications/notifications';
-import { GuiaSADT } from '../../shared/models/guia-sadt.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
   standalone: true,
-  imports: [Notifications],
+  imports: [Notifications, RouterLink],
   templateUrl: './upload.html',
   styleUrl: './upload.css',
 })

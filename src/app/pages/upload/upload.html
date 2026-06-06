@@ -1,134 +1,141 @@
-<div class="main-container">
-  <div class="text-section">
-    <h1>VISUALIZAR GUIA HOSPITALAR</h1>
-    <p>O processamento leva apenas alguns segundos.</p>
-  </div>
-
-  <div
-    class="drop-zone"
-    [class.bg-accent]="hasFile()"
-    [class.text-accent-content]="hasFile()"
-    [class.bg-white]="!hasFile()"
-    [class.text-[#999]]="!hasFile()"
-    (dragover)="onDragOver($event)"
-    (dragleave)="onDragEnd($event)"
-    (drop)="onDrop($event)"
-    (click)="fileInput.click()"
-  >
-    <input
-      #fileInput
-      type="file"
-      class="hidden"
-      accept=".pdf,image/jpeg,image/png,image/webp"
-      (change)="onFileSelected($event)"
-    />
-    <div class="upload-content pointer-events-none">
-      @if (isLoading()) {
-        <p>Processando...</p>
-        <div class="file-icon animate-spin">⚙️</div>
-      } @else if (hasFile()) {
-        <p>Solte para fazer o upload!</p>
-        <div class="file-icon">📄</div>
-      } @else {
-        <p>Clique ou arraste o arquivo aqui</p>
-        <div class="file-icon">📄</div>
-      }
-      <span class="support-text">
-        Formatos aceitos: PDF, JPG, PNG, WEBP.<br />
-        Tamanho máximo: 10MB.
-      </span>
+<div class="w-dvw h-dvh flex justify-center items-center">
+  <div class="main-container">
+    <div class="text-section">
+      <h1>VISUALIZAR GUIA HOSPITALAR</h1>
+      <p>O processamento leva apenas alguns segundos.</p>
     </div>
-  </div>
 
-  @if (guiaResult(); as guia) {
-    <div class="result-card">
-      <h2>Resultado da Extração</h2>
-      <div class="result-meta">
-        <span class="badge">{{ guia.metodo_extracao }}</span>
-        <span class="badge">Confiança: {{ ((guia.confianca_extracao ?? 0) * 100).toFixed(0) }}%</span>
-        @if (guia.campos_pendentes.length) {
-          <span class="badge badge-warning">{{ guia.campos_pendentes.length }} campo(s) pendente(s)</span>
+    <div
+      class="drop-zone"
+      [class.bg-accent]="hasFile()"
+      [class.text-accent-content]="hasFile()"
+      [class.bg-white]="!hasFile()"
+      [class.text-[#999]]="!hasFile()"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragEnd($event)"
+      (drop)="onDrop($event)"
+      (click)="fileInput.click()"
+    >
+      <input
+        #fileInput
+        type="file"
+        class="hidden"
+        accept=".pdf,image/jpeg,image/png,image/webp"
+        (change)="onFileSelected($event)"
+      />
+      <div class="upload-content pointer-events-none">
+        @if (isLoading()) {
+          <p>Processando...</p>
+          <div class="file-icon animate-spin">⚙️</div>
+        } @else if (hasFile()) {
+          <p>Solte para fazer o upload!</p>
+          <div class="file-icon">📄</div>
+        } @else {
+          <p>Clique ou arraste o arquivo aqui</p>
+          <div class="file-icon">📄</div>
         }
+        <span class="support-text">
+          Formatos aceitos: PDF, JPG, PNG, WEBP.<br />
+          Tamanho máximo: 10MB.
+        </span>
       </div>
+    </div>
 
-      <div class="result-grid">
-        @if (guia.numero_guia) {
-          <div class="result-field">
-            <label>Nº da Guia</label>
-            <span>{{ guia.numero_guia }}</span>
-          </div>
-        }
-        @if (guia.data_solicitacao) {
-          <div class="result-field">
-            <label>Data da Solicitação</label>
-            <span>{{ guia.data_solicitacao }}</span>
-          </div>
-        }
-        @if (guia.beneficiario?.nome) {
-          <div class="result-field">
-            <label>Beneficiário</label>
-            <span>{{ guia.beneficiario?.nome }}</span>
-          </div>
-        }
-        @if (guia.beneficiario?.numero_carteira) {
-          <div class="result-field">
-            <label>Carteirinha</label>
-            <span>{{ guia.beneficiario?.numero_carteira }}</span>
-          </div>
-        }
-        @if (guia.solicitante?.nome_profissional) {
-          <div class="result-field">
-            <label>Médico Solicitante</label>
-            <span>{{ guia.solicitante?.nome_profissional }}</span>
-          </div>
-        }
-        @if (guia.solicitante?.numero_conselho) {
-          <div class="result-field">
-            <label>{{ guia.solicitante?.conselho ?? 'Conselho' }}</label>
-            <span>{{ guia.solicitante?.numero_conselho }}</span>
-          </div>
-        }
-        @if (guia.cid_principal) {
-          <div class="result-field">
-            <label>CID Principal</label>
-            <span>{{ guia.cid_principal }}</span>
-          </div>
-        }
-        @if (guia.operadora?.registro_ans) {
-          <div class="result-field">
-            <label>Registro ANS</label>
-            <span>{{ guia.operadora?.registro_ans }}</span>
-          </div>
-        }
-      </div>
-
-      @if (guia.procedimentos.length) {
-        <div class="procedures-section">
-          <h3>Procedimentos (TUSS)</h3>
-          <table class="procedures-table">
-            <thead>
-              <tr>
-                <th>Código TUSS</th>
-                <th>Descrição</th>
-                <th>Qtd</th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (proc of guia.procedimentos; track proc.codigo_tuss) {
-                <tr>
-                  <td>{{ proc.codigo_tuss }}</td>
-                  <td>{{ proc.descricao }}</td>
-                  <td>{{ proc.quantidade ?? '-' }}</td>
-                </tr>
-              }
-            </tbody>
-          </table>
+    @if (guiaResult(); as guia) {
+      <div class="result-card">
+        <h2>Resultado da Extração</h2>
+        <div class="result-meta">
+          <span class="badge">{{ guia.metodo_extracao }}</span>
+          <span class="badge"
+            >Confiança: {{ ((guia.confianca_extracao ?? 0) * 100).toFixed(0) }}%</span
+          >
+          @if (guia.campos_pendentes.length) {
+            <span class="badge badge-warning"
+              >{{ guia.campos_pendentes.length }} campo(s) pendente(s)</span
+            >
+          }
         </div>
-      }
-    </div>
-  }
 
-  <div class="absolute w-70 h-50 bottom-0">
-    <app-notifications></app-notifications>
+        <div class="result-grid">
+          @if (guia.numero_guia) {
+            <div class="result-field">
+              <label>Nº da Guia</label>
+              <span>{{ guia.numero_guia }}</span>
+            </div>
+          }
+          @if (guia.data_solicitacao) {
+            <div class="result-field">
+              <label>Data da Solicitação</label>
+              <span>{{ guia.data_solicitacao }}</span>
+            </div>
+          }
+          @if (guia.beneficiario?.nome) {
+            <div class="result-field">
+              <label>Beneficiário</label>
+              <span>{{ guia.beneficiario?.nome }}</span>
+            </div>
+          }
+          @if (guia.beneficiario?.numero_carteira) {
+            <div class="result-field">
+              <label>Carteirinha</label>
+              <span>{{ guia.beneficiario?.numero_carteira }}</span>
+            </div>
+          }
+          @if (guia.solicitante?.nome_profissional) {
+            <div class="result-field">
+              <label>Médico Solicitante</label>
+              <span>{{ guia.solicitante?.nome_profissional }}</span>
+            </div>
+          }
+          @if (guia.solicitante?.numero_conselho) {
+            <div class="result-field">
+              <label>{{ guia.solicitante?.conselho ?? 'Conselho' }}</label>
+              <span>{{ guia.solicitante?.numero_conselho }}</span>
+            </div>
+          }
+          @if (guia.cid_principal) {
+            <div class="result-field">
+              <label>CID Principal</label>
+              <span>{{ guia.cid_principal }}</span>
+            </div>
+          }
+          @if (guia.operadora?.registro_ans) {
+            <div class="result-field">
+              <label>Registro ANS</label>
+              <span>{{ guia.operadora?.registro_ans }}</span>
+            </div>
+          }
+        </div>
+
+        @if (guia.procedimentos.length) {
+          <div class="procedures-section">
+            <h3>Procedimentos (TUSS)</h3>
+            <table class="procedures-table">
+              <thead>
+                <tr>
+                  <th>Código TUSS</th>
+                  <th>Descrição</th>
+                  <th>Qtd</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (proc of guia.procedimentos; track proc.codigo_tuss) {
+                  <tr>
+                    <td>{{ proc.codigo_tuss }}</td>
+                    <td>{{ proc.descricao }}</td>
+                    <td>{{ proc.quantidade ?? '-' }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+        <button class="btn btn-info" routerLink="/guia">Ver Guia Completa</button>
+      </div>
+    }
+
+    <div class="absolute w-70 h-50 bottom-0">
+      <app-notifications></app-notifications>
+    </div>
   </div>
 </div>

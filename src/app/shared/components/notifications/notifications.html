@@ -6,8 +6,8 @@
     <div
       role="alert"
       class="alert flex flex-col w-70"
-      [class.alert-error]="notification?.title === 'Arquivo Negado'"
-      [class.alert-success]="notification?.title === 'Arquivo Permitido'"
+      [class.alert-error]="notification.type === 'Error'"
+      [class.alert-success]="notification.type === 'Success'"
     >
       @if (notification) {
         <div class="flex flex-row justify-between w-full">

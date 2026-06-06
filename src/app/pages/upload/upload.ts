@@ -1,17 +1,21 @@
 import { Component, inject, signal } from '@angular/core';
 import { FileService } from '../../core/services/FileService/file-service';
 import { Notifications } from '../../shared/components/notifications/notifications';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
   standalone: true,
-  imports: [Notifications],
+  imports: [Notifications, RouterLink],
   templateUrl: './upload.html',
   styleUrl: './upload.css',
 })
 export class UploadComponent {
   private fileService = inject(FileService);
+
   hasFile = signal(false);
+  isLoading = this.fileService.isLoading;
+  guiaResult = this.fileService.guiaResult;
 
   dragHandler(event: DragEvent) {
     event.preventDefault();
@@ -30,11 +34,17 @@ export class UploadComponent {
 
   onDrop(event: DragEvent) {
     this.dragHandler(event);
-
     const files = event.dataTransfer?.files;
     if (files) {
       this.fileService.uploadFile(files);
     }
     this.hasFile.set(false);
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      this.fileService.uploadFile(input.files);
+    }
   }
 }

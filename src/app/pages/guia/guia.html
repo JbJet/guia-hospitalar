@@ -1,0 +1,798 @@
+<div class="h-fit">
+  <header class="bg-blue-900 text-white shadow-lg">
+    <div class="w-full p-8 flex flex-col items-center justify-center">
+      <div class="w-full xl:w-[60%] relative flex flex-row items-center justify-center">
+        <!-- Logo -->
+        <img src="./logo-uniube.webp" alt="Logo" class="h-20 mr-auto" />
+
+        <!-- Título -->
+        <div class="text-center mr-auto">
+          <h1 class="text-4xl font-bold">Sistema TISS</h1>
+
+          <p class="text-lg text-slate-300">Guia de Solicitação de Internação</p>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="flex flex-col items-center">
+    <form class="flex flex-col gap-5 p-4 w-full xl:max-w-[60%]">
+      <!-- Dados da Operadora -->
+      <section class="border border-gray-400 bg-white">
+        <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">Dados da Operadora</div>
+        <div class="grid grid-cols-12">
+          <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+            <label for="registroAns" class="text-[11px] font-bold uppercase text-gray-600">
+              1 - Registro ANS
+            </label>
+            <input
+              [formField]="guiaForm.operadora!.registro_ans!"
+              type="number"
+              id="registroAns"
+              placeholder="000000"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-5 border-r border-b border-gray-400 p-2">
+            <label for="numeroGuiaPrestador" class="text-[11px] font-bold uppercase text-gray-600">
+              2 - Número da guia no prestador
+            </label>
+            <input
+              [formField]="guiaForm.numero_guia_prestador!"
+              type="number"
+              id="numeroGuiaPrestador"
+              placeholder="Digite o número da guia"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-4 border-b border-gray-400 p-2">
+            <label for="numeroGuiaOperadora" class="text-[11px] font-bold uppercase text-gray-600">
+              3 - Número da guia atribuído pela operadora
+            </label>
+            <input
+              [formField]="guiaForm.numero_guia!"
+              type="num"
+              id="numeroGuiaOperadora"
+              placeholder="Número da operadora"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
+            <label for="dataAutorizacao" class="text-[11px] font-bold uppercase text-gray-600">
+              4 - Data da autorização
+            </label>
+            <input
+              [formField]="guiaForm.data_autorizacao!"
+              type="date"
+              id="dataAutorizacao"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
+            <label for="senha" class="text-[11px] font-bold uppercase text-gray-600"
+              >5 - Senha</label
+            >
+            <input
+              [formField]="guiaForm.senha_autorizacao!"
+              type="text"
+              id="senha"
+              placeholder="Senha da autorização"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-4 border-b border-gray-400 p-2">
+            <label for="dataValidadeSenha" class="text-[11px] font-bold uppercase text-gray-600">
+              6 - Data de validade da senha
+            </label>
+            <input
+              [formField]="guiaForm.data_validade_senha!"
+              type="date"
+              id="dataValidadeSenha"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Dados do Beneficiário -->
+      <section class="border border-gray-400 bg-white">
+        <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">
+          Dados do Beneficiário
+        </div>
+        <div class="grid grid-cols-12">
+          <div class="col-span-12 md:col-span-5 border-r border-b border-gray-400 p-2">
+            <label for="numeroCarteira" class="text-[11px] font-bold uppercase text-gray-600">
+              7 - Número da carteira
+            </label>
+            <input
+              [formField]="guiaForm.beneficiario!.numero_carteira!"
+              type="text"
+              id="numeroCarteira"
+              placeholder="Número da carteira do beneficiário"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+            <label for="validadeCarteira" class="text-[11px] font-bold uppercase text-gray-600">
+              8 - Validade da carteira
+            </label>
+            <input
+              type="date"
+              id="validadeCarteira"
+              name="validadeCarteira"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+            <label for="cartaoNacionalSaude" class="text-[11px] font-bold uppercase text-gray-600">
+              11 - Cartão Nacional de Saúde (CNS)
+            </label>
+            <input
+              [formField]="guiaForm.beneficiario!.cns!"
+              type="text"
+              id="cartaoNacionalSaude"
+              placeholder="Número do CNS"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-1 border-b border-gray-400 p-2">
+            <label for="atendimentoRn" class="text-[11px] font-bold uppercase text-gray-600">
+              9 - Atendimento a RN
+            </label>
+            <input
+              [formField]="guiaForm.beneficiario!.atendimento_rn!"
+              id="atendimentoRn"
+              type="checkbox"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+            <!-- <select
+          [formField]="guiaForm.beneficiario!.atendimento_rn!"
+          id="atendimentoRn"
+          class="w-full text-lg font-semibold outline-none bg-transparent"
+        >
+          <option value="S">Sim</option>
+          <option value="N">Não</option>
+        </select> -->
+          </div>
+
+          <div class="col-span-12 p-2">
+            <label for="nomeBeneficiario" class="text-[11px] font-bold uppercase text-gray-600">
+              10 - Nome do beneficiário
+            </label>
+            <input
+              [formField]="guiaForm.beneficiario!.nome!"
+              type="text"
+              id="nomeBeneficiario"
+              placeholder="Digite o nome do beneficiário"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Dados do Contratado Solicitante -->
+      <section class="border border-gray-400 bg-white">
+        <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">
+          Dados do Contratado Solicitante
+        </div>
+        <div class="grid grid-cols-12">
+          <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+            <label for="codigoContratado" class="text-[11px] font-bold uppercase text-gray-600">
+              12 - Código do contratado
+            </label>
+            <input
+              [formField]="guiaForm.executante!.codigo_na_operadora!"
+              type="text"
+              id="codigoContratado"
+              placeholder="Código do contratado"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-9 border-b border-gray-400 p-2">
+            <label for="nomeContratado" class="text-[11px] font-bold uppercase text-gray-600">
+              13 - Nome do contratado solicitante
+            </label>
+            <input
+              [formField]="guiaForm.solicitante!.nome_contratado!"
+              type="text"
+              id="nomeContratado"
+              placeholder="Nome do contratado solicitante"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-6 border-r border-b border-gray-400 p-2">
+            <label
+              for="nomeProfissionalSolicitante"
+              class="text-[11px] font-bold uppercase text-gray-600"
+            >
+              14 - Nome do profissional solicitante
+            </label>
+            <input
+              [formField]="guiaForm.solicitante!.nome_profissional!"
+              type="text"
+              id="nomeProfissionalSolicitante"
+              placeholder="Nome do profissional solicitante"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+            <label for="conselhoProfissional" class="text-[11px] font-bold uppercase text-gray-600">
+              15 - Conselho profissional
+            </label>
+            <input
+              [formField]="guiaForm.solicitante!.conselho!"
+              type="text"
+              id="conselhoProfissional"
+              placeholder="CRM"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+            <label for="numeroConselho" class="text-[11px] font-bold uppercase text-gray-600">
+              16 - Número no conselho
+            </label>
+            <input
+              [formField]="guiaForm.solicitante!.numero_conselho!"
+              type="text"
+              id="numeroConselho"
+              placeholder="Número do registro"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-1 border-r border-b border-gray-400 p-2">
+            <label for="ufConselho" class="text-[11px] font-bold uppercase text-gray-600"
+              >17 - UF</label
+            >
+            <input
+              [formField]="guiaForm.solicitante!.uf_conselho!"
+              type="text"
+              id="ufConselho"
+              placeholder="MG"
+              class="w-full text-lg font-semibold uppercase outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-1 border-b border-gray-400 p-2">
+            <label for="codigoCbo" class="text-[11px] font-bold uppercase text-gray-600"
+              >18 - Código CBO</label
+            >
+            <input
+              [formField]="guiaForm.solicitante!.cbo!"
+              type="text"
+              id="codigoCbo"
+              placeholder="225125"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Dados do Hospital / Local Solicitado / Dados de Internação -->
+      <section class="border border-gray-400 bg-white">
+        <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">
+          Dados do Hospital / Local Solicitado / Dados de Internação
+        </div>
+        <div class="grid grid-cols-12">
+          <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+            <label for="codigoOperadoraCnpj" class="text-[11px] font-bold uppercase text-gray-600">
+              19 - Código na operadora / CNPJ
+            </label>
+            <input
+              [formField]="guiaForm.executante!.codigo_na_operadora!"
+              type="text"
+              id="codigoOperadoraCnpj"
+              placeholder="CNPJ ou código"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-6 border-r border-b border-gray-400 p-2">
+            <label for="nomeHospitalLocal" class="text-[11px] font-bold uppercase text-gray-600">
+              20 - Nome do hospital / local
+            </label>
+            <input
+              [formField]="guiaForm.solicitante!.nome_contratado!"
+              type="text"
+              id="nomeHospitalLocal"
+              placeholder="Nome do hospital ou local"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-3 border-b border-gray-400 p-2">
+            <label
+              for="dataSugeridaInternacao"
+              class="text-[11px] font-bold uppercase text-gray-600"
+            >
+              21 - Data sugerida para internação
+            </label>
+            <input
+              type="date"
+              id="dataSugeridaInternacao"
+              name="dataSugeridaInternacao"
+              required
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+            <label for="caraterAtendimento" class="text-[11px] font-bold uppercase text-gray-600">
+              22 - Caráter do atendimento
+            </label>
+            <select
+              [formField]="guiaForm.carater_atendimento!"
+              id="caraterAtendimento"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            >
+              <option value="">-</option>
+              <option value="Eletivo">Eletivo</option>
+              <option value="Urgência">Urgência</option>
+            </select>
+          </div>
+
+          <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+            <label for="tipoInternacao" class="text-[11px] font-bold uppercase text-gray-600">
+              23 - Tipo de internação
+            </label>
+            <select
+              id="tipoInternacao"
+              name="tipoInternacao"
+              required
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            >
+              <option value="">-</option>
+              <option value="1">Clínica</option>
+              <option value="2">Cirúrgica</option>
+            </select>
+          </div>
+
+          <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+            <label for="regimeInternacao" class="text-[11px] font-bold uppercase text-gray-600">
+              24 - Regime de internação
+            </label>
+            <select
+              id="regimeInternacao"
+              name="regimeInternacao"
+              required
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            >
+              <option value="">-</option>
+              <option value="1">Hospitalar</option>
+              <option value="2">Hospital-dia</option>
+              <option value="3">Domiciliar</option>
+            </select>
+          </div>
+
+          <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+            <label for="qtdeDiarias" class="text-[11px] font-bold uppercase text-gray-600">
+              25 - Quantidade de diárias
+            </label>
+            <input
+              type="number"
+              id="qtdeDiarias"
+              name="qtdeDiarias"
+              min="1"
+              max="99"
+              required
+              placeholder="00"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+            <label for="usoOpme" class="text-[11px] font-bold uppercase text-gray-600">
+              26 - Previsão de uso de OPME
+            </label>
+            <select
+              id="usoOpme"
+              name="usoOpme"
+              required
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            >
+              <option value="">-</option>
+              <option value="S">Sim</option>
+              <option value="N">Não</option>
+            </select>
+          </div>
+
+          <div class="col-span-12 md:col-span-2 border-b border-gray-400 p-2">
+            <label for="usoQuimioterapico" class="text-[11px] font-bold uppercase text-gray-600">
+              27 - Previsão de uso de quimioterápico
+            </label>
+            <select
+              id="usoQuimioterapico"
+              name="usoQuimioterapico"
+              required
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            >
+              <option value="">-</option>
+              <option value="S">Sim</option>
+              <option value="N">Não</option>
+            </select>
+          </div>
+
+          <div class="col-span-12 border-b border-gray-400 p-2">
+            <label for="indicacaoClinica" class="text-[11px] font-bold uppercase text-gray-600">
+              28 - Indicação clínica
+            </label>
+            <textarea
+              [formField]="guiaForm.indicacao_clinica!"
+              id="indicacaoClinica"
+              rows="4"
+              placeholder="Digite a indicação clínica"
+              class="w-full text-lg font-semibold outline-none resize-none bg-transparent"
+            ></textarea>
+          </div>
+
+          <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+            <label for="cid10Principal" class="text-[11px] font-bold uppercase text-gray-600">
+              29 - CID10 Principal
+            </label>
+            <input
+              [formField]="guiaForm.cid_principal!"
+              type="text"
+              id="cid10Principal"
+              placeholder="A000"
+              class="w-full text-lg font-semibold uppercase outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+            <label for="cid10Secundario" class="text-[11px] font-bold uppercase text-gray-600">
+              30 - CID10 (2)
+            </label>
+            <input
+              [formField]="guiaForm.cid_secundario!"
+              type="text"
+              id="cid10Secundario"
+              placeholder="A000"
+              class="w-full text-lg font-semibold uppercase outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+            <label for="cid10Terceiro" class="text-[11px] font-bold uppercase text-gray-600">
+              31 - CID10 (3)
+            </label>
+            <input
+              type="text"
+              id="cid10Terceiro"
+              name="cid10Terceiro"
+              maxlength="4"
+              placeholder="A000"
+              class="w-full text-lg font-semibold uppercase outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+            <label for="cid10Quarto" class="text-[11px] font-bold uppercase text-gray-600">
+              32 - CID10 (4)
+            </label>
+            <input
+              type="text"
+              id="cid10Quarto"
+              name="cid10Quarto"
+              maxlength="4"
+              placeholder="A000"
+              class="w-full text-lg font-semibold uppercase outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-4 border-b border-gray-400 p-2">
+            <label for="indicacaoAcidente" class="text-[11px] font-bold uppercase text-gray-600">
+              33 - Indicação de acidente
+            </label>
+            <select
+              id="indicacaoAcidente"
+              name="indicacaoAcidente"
+              required
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            >
+              <option value="">-</option>
+              <option value="0">Não relacionado</option>
+              <option value="1">Acidente de trânsito</option>
+              <option value="2">Acidente de trabalho</option>
+              <option value="3">Outros acidentes</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Procedimentos ou Itens Assistenciais Solicitados -->
+      <section class="border border-gray-400 bg-white">
+        <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">
+          Procedimentos ou Itens Assistenciais Solicitados
+        </div>
+        <div class="grid grid-cols-12">
+          <!-- fazer for com oque receber do procedimento -->
+          @if (this.guiaResult?.procedimentos != []) {
+            @for (procedimento of this.guiaResult?.procedimentos; track $index; let idx = $index) {
+              <div class="col-span-12 md:col-span-1 border-r border-b border-gray-400 p-2">
+                <label for="tabelaReferencia" class="text-[11px] font-bold uppercase text-gray-600">
+                  34 - Tabela
+                </label>
+                <input
+                  type="text"
+                  id="tabelaReferencia"
+                  name="tabelaReferencia"
+                  maxlength="2"
+                  required
+                  [value]="idx"
+                  class="w-full text-lg font-semibold outline-none bg-transparent"
+                />
+              </div>
+
+              <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+                <label
+                  for="codigoProcedimento"
+                  class="text-[11px] font-bold uppercase text-gray-600"
+                >
+                  35 - Código do procedimento
+                </label>
+                <input
+                  type="text"
+                  [value]="procedimento.codigo_tuss"
+                  id="codigoProcedimento"
+                  name="codigoProcedimento"
+                  maxlength="10"
+                  required
+                  placeholder="Código do procedimento"
+                  class="w-full text-lg font-semibold outline-none bg-transparent"
+                />
+              </div>
+
+              <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
+                <label
+                  for="descricaoProcedimento"
+                  class="text-[11px] font-bold uppercase text-gray-600"
+                >
+                  36 - Descrição
+                </label>
+                <input
+                  type="text"
+                  [value]="procedimento.descricao"
+                  id="descricaoProcedimento"
+                  name="descricaoProcedimento"
+                  maxlength="150"
+                  required
+                  placeholder="Descrição do procedimento"
+                  class="w-full text-lg font-semibold outline-none bg-transparent"
+                />
+              </div>
+
+              <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
+                <label for="qtdeSolicitada" class="text-[11px] font-bold uppercase text-gray-600">
+                  37 - Qtde Solic
+                </label>
+                <input
+                  type="number"
+                  [value]="procedimento.quantidade"
+                  id="qtdeSolicitada"
+                  name="qtdeSolicitada"
+                  min="0"
+                  max="999"
+                  required
+                  class="w-full text-lg font-semibold outline-none bg-transparent"
+                />
+              </div>
+
+              <div class="col-span-12 md:col-span-2 border-b border-gray-400 p-2">
+                <label for="qtdeAutorizada" class="text-[11px] font-bold uppercase text-gray-600">
+                  38 - Qtde Aut
+                </label>
+                <input
+                  type="number"
+                  id="qtdeAutorizada"
+                  name="qtdeAutorizada"
+                  [value]="procedimento.quantidade"
+                  min="0"
+                  max="999"
+                  required
+                  class="w-full text-lg font-semibold outline-none bg-transparent"
+                />
+              </div>
+            }
+          } @else {
+            <div class="col-span-12 md:col-span-2 p-2">
+              <p>Nenhum procedimento indentificado!</p>
+            </div>
+          }
+        </div>
+      </section>
+
+      <!-- Dados da Autorização -->
+      <section class="border border-gray-400 bg-white">
+        <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">Dados da Autorização</div>
+        <div class="grid grid-cols-12">
+          <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
+            <label for="dataAdmissao" class="text-[11px] font-bold uppercase text-gray-600">
+              39 - Data provável da admissão hospitalar
+            </label>
+            <input
+              type="date"
+              id="dataAdmissao"
+              name="dataAdmissao"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
+            <label
+              for="qtdeDiariasAutorizadas"
+              class="text-[11px] font-bold uppercase text-gray-600"
+            >
+              40 - Qtde diárias autorizadas
+            </label>
+            <input
+              type="number"
+              id="qtdeDiariasAutorizadas"
+              name="qtdeDiariasAutorizadas"
+              min="0"
+              max="999"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-4 border-b border-gray-400 p-2">
+            <label for="tipoAcomodacao" class="text-[11px] font-bold uppercase text-gray-600">
+              41 - Tipo da acomodação autorizada
+            </label>
+            <input
+              type="text"
+              id="tipoAcomodacao"
+              name="tipoAcomodacao"
+              maxlength="2"
+              placeholder="00"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
+            <label
+              for="codigoOperadoraAutorizada"
+              class="text-[11px] font-bold uppercase text-gray-600"
+            >
+              42 - Código na operadora
+            </label>
+            <input
+              type="text"
+              id="codigoOperadoraAutorizada"
+              name="codigoOperadoraAutorizada"
+              maxlength="14"
+              placeholder="Código autorizado"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-5 border-r border-b border-gray-400 p-2">
+            <label for="hospitalAutorizado" class="text-[11px] font-bold uppercase text-gray-600">
+              43 - Nome do hospital / local autorizado
+            </label>
+            <input
+              type="text"
+              id="hospitalAutorizado"
+              name="hospitalAutorizado"
+              maxlength="70"
+              placeholder="Hospital autorizado"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-3 border-b border-gray-400 p-2">
+            <label for="codigoCnes" class="text-[11px] font-bold uppercase text-gray-600">
+              44 - Código CNES
+            </label>
+            <input
+              type="text"
+              id="codigoCnes"
+              name="codigoCnes"
+              maxlength="7"
+              placeholder="Código CNES"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 border-b border-gray-400 p-2">
+            <label
+              for="observacaoJustificativa"
+              class="text-[11px] font-bold uppercase text-gray-600"
+            >
+              45 - Observação / Justificativa
+            </label>
+            <textarea
+              id="observacaoJustificativa"
+              name="observacaoJustificativa"
+              maxlength="1000"
+              rows="5"
+              placeholder="Digite observações ou justificativas"
+              class="w-full text-lg font-semibold outline-none resize-none bg-transparent"
+            ></textarea>
+          </div>
+
+          <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+            <label for="dataSolicitacao" class="text-[11px] font-bold uppercase text-gray-600">
+              46 - Data da solicitação
+            </label>
+            <input
+              type="date"
+              id="dataSolicitacao"
+              name="dataSolicitacao"
+              required
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+            <label
+              for="assinaturaProfissional"
+              class="text-[11px] font-bold uppercase text-gray-600"
+            >
+              47 - Assinatura do profissional solicitante
+            </label>
+            <input
+              type="text"
+              id="assinaturaProfissional"
+              name="assinaturaProfissional"
+              required
+              placeholder="Nome ou assinatura"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
+            <label
+              for="assinaturaBeneficiario"
+              class="text-[11px] font-bold uppercase text-gray-600"
+            >
+              48 - Assinatura do beneficiário ou responsável
+            </label>
+            <input
+              type="text"
+              id="assinaturaBeneficiario"
+              name="assinaturaBeneficiario"
+              required
+              placeholder="Nome ou assinatura"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+
+          <div class="col-span-12 md:col-span-3 border-b border-gray-400 p-2">
+            <label
+              for="assinaturaAutorizacao"
+              class="text-[11px] font-bold uppercase text-gray-600"
+            >
+              49 - Assinatura do responsável pela autorização
+            </label>
+            <input
+              type="text"
+              id="assinaturaAutorizacao"
+              name="assinaturaAutorizacao"
+              required
+              placeholder="Nome ou assinatura"
+              class="w-full text-lg font-semibold outline-none bg-transparent"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Botão -->
+      <div class="md:col-span-2 flex justify-end">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg">
+          Enviar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

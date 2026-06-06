@@ -5,7 +5,7 @@ import { Message } from '../../../shared/models/message.interface';
 import { GuiaSADT } from '../../../shared/models/guia-sadt.interface';
 import { NotificationService } from '../NotificationService/notification-service';
 
-const API_URL = 'http://localhost:8000/api';
+const API_URL = 'https://backend.guia.joaquim.xyz/api';
 
 const ALLOWED_TYPES = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'];
 const MAX_SIZE_BYTES = 10 * 1024 * 1024;

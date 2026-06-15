@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { GuiaSADT } from '../../shared/models/guia-sadt.interface';
 import { form, FormField, FormRoot, max, submit } from '@angular/forms/signals';
 import { FileService } from '../../core/services/FileService/file-service';
+
 @Component({
   selector: 'app-guia',
   imports: [FormField, FormRoot],
@@ -12,83 +13,86 @@ export class Guia {
   private fileService = inject(FileService);
   protected guiaResult = this.fileService.guiaResult();
 
-  toDateInput(valor: string | Date | undefined): string {
-    if (!valor) return '';
-    const v = new Date(valor);
-    return v.toDateString();
+  guiaModel!: ReturnType<typeof signal<GuiaSADT>>;
+  guiaForm: any;
+
+  toDateInputValue(data: string | null | undefined): string {
+    if (!data) return '';
+    if (data.includes('-')) return data;
+    const [day, month, year] = data.split('/');
+    if (!day || !month || !year) return '';
+    return `${year}-${month}-${day}`;
   }
 
   constructor() {
-    console.log(this.guiaResult);
+    const g = this.guiaResult;
+
+    this.guiaModel = signal<GuiaSADT>({
+      numero_guia: g?.numero_guia || '',
+      numero_guia_prestador: g?.numero_guia_prestador || '',
+      data_solicitacao: this.toDateInputValue(g?.data_solicitacao),
+      data_autorizacao: this.toDateInputValue(g?.data_autorizacao),
+      senha_autorizacao: g?.senha_autorizacao || '',
+      data_validade_senha: this.toDateInputValue(g?.data_validade_senha),
+      tipo_guia: g?.tipo_guia || '',
+      operadora: {
+        registro_ans: g?.operadora?.registro_ans || '',
+        nome_operadora: g?.operadora?.nome_operadora || '',
+      },
+      beneficiario: {
+        numero_carteira: g?.beneficiario?.numero_carteira || '',
+        nome: g?.beneficiario?.nome || '',
+        data_nascimento: this.toDateInputValue(g?.beneficiario?.data_nascimento),
+        cns: g?.beneficiario?.cns || '',
+        atendimento_rn: g?.beneficiario?.atendimento_rn || false,
+      },
+      solicitante: {
+        nome_contratado: g?.solicitante?.nome_contratado || '',
+        cnes_solicitante: g?.solicitante?.cnes_solicitante || '',
+        nome_profissional: g?.solicitante?.nome_profissional || '',
+        conselho: g?.solicitante?.conselho || '',
+        numero_conselho: g?.solicitante?.numero_conselho || '',
+        uf_conselho: g?.solicitante?.uf_conselho || '',
+        cbo: g?.solicitante?.cbo || '',
+        assinatura_data: this.toDateInputValue(g?.solicitante?.assinatura_data),
+      },
+      executante: {
+        nome_contratado: g?.executante?.nome_contratado || '',
+        cnes_executante: g?.executante?.cnes_executante || '',
+        codigo_na_operadora: g?.executante?.codigo_na_operadora || '',
+      },
+      indicacao_clinica: g?.indicacao_clinica || '',
+      cid_principal: g?.cid_principal || '',
+      cid_secundario: g?.cid_secundario || '',
+      carater_atendimento: g?.carater_atendimento || '',
+      tipo_atendimento: g?.tipo_atendimento || '',
+      procedimentos: [],
+      confianca_extracao: g?.confianca_extracao || 0,
+      metodo_extracao: g?.metodo_extracao || '',
+      campos_pendentes: [],
+    });
+
+    this.guiaForm = form(this.guiaModel, (schemaPath) => {
+      max(schemaPath.operadora!.registro_ans!, 6);
+      max(schemaPath.numero_guia_prestador!, 20);
+      max(schemaPath.beneficiario!.numero_carteira!!, 20);
+      max(schemaPath.senha_autorizacao!, 20);
+      max(schemaPath.beneficiario!.nome!, 70);
+      max(schemaPath.beneficiario!.cns!, 15);
+      max(schemaPath.executante!.codigo_na_operadora!, 14);
+      max(schemaPath.solicitante!.nome_contratado!, 70);
+      max(schemaPath.solicitante!.nome_profissional!, 70);
+      max(schemaPath.solicitante!.conselho!, 2);
+      max(schemaPath.solicitante!.numero_conselho!, 15);
+      max(schemaPath.solicitante!.uf_conselho!, 2);
+      max(schemaPath.solicitante!.cbo!, 6);
+      max(schemaPath.indicacao_clinica!, 500);
+      max(schemaPath.cid_principal!, 4);
+      max(schemaPath.cid_secundario!, 4);
+    });
   }
-  guiaModel = signal<GuiaSADT>({
-    numero_guia: this.guiaResult?.numero_guia || '',
-    numero_guia_prestador: this.guiaResult?.numero_guia_prestador || '',
-    data_solicitacao: this.toDateInput(this.guiaResult?.data_solicitacao) || '',
-    data_autorizacao: this.toDateInput(this.guiaResult?.data_autorizacao) || '',
-    senha_autorizacao: this.guiaResult?.senha_autorizacao || '',
-    data_validade_senha: this.toDateInput(this.guiaResult?.data_validade_senha),
-    tipo_guia: this.guiaResult?.tipo_guia || '',
-    operadora: {
-      registro_ans: this.guiaResult?.operadora?.registro_ans || '',
-      nome_operadora: this.guiaResult?.operadora?.nome_operadora || '',
-    },
-    beneficiario: {
-      numero_carteira: this.guiaResult?.beneficiario?.numero_carteira || '',
-      nome: this.guiaResult?.beneficiario?.nome || '',
-      data_nascimento: this.guiaResult?.beneficiario?.data_nascimento,
-      cns: this.guiaResult?.beneficiario?.cns || '',
-      atendimento_rn: this.guiaResult?.beneficiario?.atendimento_rn || false,
-    },
-    solicitante: {
-      nome_contratado: this.guiaResult?.solicitante?.nome_contratado || '',
-      cnes_solicitante: this.guiaResult?.solicitante?.cnes_solicitante || '',
-      nome_profissional: this.guiaResult?.solicitante?.nome_profissional || '',
-      conselho: this.guiaResult?.solicitante?.conselho || '',
-      numero_conselho: this.guiaResult?.solicitante?.numero_conselho || '',
-      uf_conselho: this.guiaResult?.solicitante?.uf_conselho || '',
-      cbo: this.guiaResult?.solicitante?.cbo || '',
-      assinatura_data: this.guiaResult?.solicitante?.assinatura_data,
-    },
-    executante: {
-      nome_contratado: this.guiaResult?.executante?.nome_contratado || '',
-      cnes_executante: this.guiaResult?.executante?.cnes_executante || '',
-      codigo_na_operadora: this.guiaResult?.executante?.codigo_na_operadora || '',
-    },
-    indicacao_clinica: this.guiaResult?.indicacao_clinica || '',
-    cid_principal: this.guiaResult?.cid_principal || '',
-    cid_secundario: this.guiaResult?.cid_secundario || '',
-    carater_atendimento: this.guiaResult?.carater_atendimento || '',
-    tipo_atendimento: this.guiaResult?.tipo_atendimento || '',
-    procedimentos: [],
-    confianca_extracao: this.guiaResult?.confianca_extracao || 0,
-    metodo_extracao: this.guiaResult?.metodo_extracao || '',
-    campos_pendentes: [],
-  });
-
-  guiaForm = form(this.guiaModel, (schemaPath) => {
-    max(schemaPath.operadora!.registro_ans!, 6); // 1
-    max(schemaPath.numero_guia_prestador!, 20); // 2
-
-    max(schemaPath.beneficiario!.numero_carteira!!, 20); // 4
-    max(schemaPath.senha_autorizacao!, 20);
-    max(schemaPath.beneficiario!.nome!, 70); // 10
-    max(schemaPath.beneficiario!.cns!, 15); // 11
-    max(schemaPath.executante!.codigo_na_operadora!, 14); // 12, 19
-    max(schemaPath.solicitante!.nome_contratado!, 70); // 13, 20
-    max(schemaPath.solicitante!.nome_profissional!, 70); // 14
-    max(schemaPath.solicitante!.conselho!, 2); // 15
-    max(schemaPath.solicitante!.numero_conselho!, 15); // 16
-    max(schemaPath.solicitante!.uf_conselho!, 2); // 17
-    max(schemaPath.solicitante!.cbo!, 6); // 18
-
-    max(schemaPath.indicacao_clinica!, 500);
-    max(schemaPath.cid_principal!, 4);
-    max(schemaPath.cid_principal!, 4);
-  });
 
   baixarJSON(value = this.guiaModel()) {
-    console.log(this.guiaModel());
     const json = JSON.stringify(value, null, 2);
     const blob = new Blob([json], { type: 'application/json' });
 

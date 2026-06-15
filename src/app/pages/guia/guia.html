@@ -1,14 +1,20 @@
 <div class="h-fit">
-  <header class="bg-blue-900 text-white shadow-lg">
-    <div class="w-full p-8 flex flex-col items-center justify-center">
-      <div class="w-full xl:w-[60%] relative flex flex-row items-center justify-center">
+  <header class="bg-blue-900 text-white shadow-lg flex justify-center">
+    <div class="w-full xl:w-[60%] p-8">
+      <div class="text-center w-full relative">
         <!-- Logo -->
-        <img src="./logo-uniube.webp" alt="Logo" class="h-20 mr-auto" />
-
+        <div class="w-fit absolute left-0 h-full flex flex-col justify-center">
+          <img src="./logo-uniube.webp" alt="Logo" class="h-20" />
+        </div>
         <!-- Título -->
-        <div class="text-center mr-auto">
+        <div class="flex flex-col text-center">
           <h1 class="text-4xl font-bold">Sistema TISS</h1>
-          <p class="text-lg text-slate-300">Guia de Solicitação de Internação</p>
+          <p class="text-xl text-slate-200">Guia de Solicitação de Internação</p>
+
+          <div class="text-md text-slate-300 hidden md:block">
+            <p>Feito Por: Joaquim Brasiliano Gonçalves, Nicolas Catelan, Sarah Mota Silva</p>
+            <p>Orientador: Maxwell Gomes da Silva</p>
+          </div>
         </div>
       </div>
     </div>
@@ -16,14 +22,9 @@
 
   <div class="flex flex-col items-center">
     <form [formRoot]="this.guiaForm" class="flex flex-col gap-5 p-4 w-full xl:max-w-[60%]">
-      <!-- ═══════════════════════════════════════════
-           DADOS DA OPERADORA
-           Campos: 1, nome_operadora*, 2, 3, 4, 5, 6
-           ═══════════════════════════════════════════ -->
       <section class="border border-gray-400 bg-white">
         <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">Dados da Operadora</div>
         <div class="grid grid-cols-12">
-          <!-- Campo 1 – Registro ANS -->
           <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
             <label for="registroAns" class="text-[11px] font-bold uppercase text-gray-600">
               1 - Registro ANS
@@ -37,7 +38,6 @@
             />
           </div>
 
-          <!-- * Nome da Operadora — campo adicionado via JSON (nome_operadora) -->
           <div class="col-span-12 md:col-span-9 border-b border-gray-400 p-2">
             <label for="nomeOperadora" class="text-[11px] font-bold uppercase text-gray-600">
               Nome da Operadora
@@ -51,7 +51,6 @@
             />
           </div>
 
-          <!-- Campo 2 – Nº da Guia no Prestador -->
           <div class="col-span-12 md:col-span-5 border-r border-b border-gray-400 p-2">
             <label for="numeroGuiaPrestador" class="text-[11px] font-bold uppercase text-gray-600">
               2 - Número da guia no prestador
@@ -65,7 +64,6 @@
             />
           </div>
 
-          <!-- Campo 3 – Nº da Guia Atribuído pela Operadora -->
           <div class="col-span-12 md:col-span-7 border-b border-gray-400 p-2">
             <label for="numeroGuiaOperadora" class="text-[11px] font-bold uppercase text-gray-600">
               3 - Número da guia atribuído pela operadora
@@ -79,7 +77,6 @@
             />
           </div>
 
-          <!-- Campo 4 – Data da Autorização -->
           <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
             <label for="dataAutorizacao" class="text-[11px] font-bold uppercase text-gray-600">
               4 - Data da autorização
@@ -92,7 +89,6 @@
             />
           </div>
 
-          <!-- Campo 5 – Senha -->
           <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
             <label for="senha" class="text-[11px] font-bold uppercase text-gray-600">
               5 - Senha
@@ -106,7 +102,6 @@
             />
           </div>
 
-          <!-- Campo 6 – Data de Validade da Senha -->
           <div class="col-span-12 md:col-span-4 border-b border-gray-400 p-2">
             <label for="dataValidadeSenha" class="text-[11px] font-bold uppercase text-gray-600">
               6 - Data de validade da senha
@@ -121,17 +116,11 @@
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           DADOS DO BENEFICIÁRIO
-           Campos: 7, 8, 9, data_nascimento*, 10, 11
-           (ordem corrigida conforme PDF)
-           ═══════════════════════════════════════════ -->
       <section class="border border-gray-400 bg-white">
         <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">
           Dados do Beneficiário
         </div>
         <div class="grid grid-cols-12">
-          <!-- Campo 7 – Número da Carteira -->
           <div class="col-span-12 md:col-span-5 border-r border-b border-gray-400 p-2">
             <label for="numeroCarteira" class="text-[11px] font-bold uppercase text-gray-600">
               7 - Número da carteira
@@ -145,7 +134,6 @@
             />
           </div>
 
-          <!-- Campo 8 – Validade da Carteira -->
           <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
             <label for="validadeCarteira" class="text-[11px] font-bold uppercase text-gray-600">
               8 - Validade da carteira
@@ -158,7 +146,6 @@
             />
           </div>
 
-          <!-- Campo 9 – Atendimento a RN -->
           <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
             <label for="atendimentoRn" class="text-[11px] w-full font-bold uppercase text-gray-600">
               9 - Atendimento a RN
@@ -171,7 +158,6 @@
             />
           </div>
 
-          <!-- * Data de Nascimento — campo adicionado via JSON (data_nascimento) -->
           <div class="col-span-12 md:col-span-2 border-b border-gray-400 p-2">
             <label for="dataNascimento" class="text-[11px] font-bold uppercase text-gray-600">
               Data de nascimento
@@ -184,7 +170,6 @@
             />
           </div>
 
-          <!-- Campo 10 – Nome do Beneficiário -->
           <div class="col-span-12 md:col-span-8 border-r border-b border-gray-400 p-2">
             <label for="nomeBeneficiario" class="text-[11px] font-bold uppercase text-gray-600">
               10 - Nome do beneficiário
@@ -198,7 +183,6 @@
             />
           </div>
 
-          <!-- Campo 11 – Cartão Nacional de Saúde (CNS) -->
           <div class="col-span-12 md:col-span-4 border-b border-gray-400 p-2">
             <label for="cartaoNacionalSaude" class="text-[11px] font-bold uppercase text-gray-600">
               11 - Cartão Nacional de Saúde (CNS)
@@ -214,16 +198,11 @@
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           DADOS DO CONTRATADO SOLICITANTE
-           Campos: 12, 13, cnes_solicitante*, 14, 15, 16, 17, 18
-           ═══════════════════════════════════════════ -->
       <section class="border border-gray-400 bg-white">
         <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">
           Dados do Contratado Solicitante
         </div>
         <div class="grid grid-cols-12">
-          <!-- Campo 12 – Código na Operadora -->
           <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
             <label for="codigoContratado" class="text-[11px] font-bold uppercase text-gray-600">
               12 - Código na operadora
@@ -237,7 +216,6 @@
             />
           </div>
 
-          <!-- Campo 13 – Nome do Contratado Solicitante -->
           <div class="col-span-12 md:col-span-6 border-r border-b border-gray-400 p-2">
             <label for="nomeContratado" class="text-[11px] font-bold uppercase text-gray-600">
               13 - Nome do contratado solicitante
@@ -251,7 +229,6 @@
             />
           </div>
 
-          <!-- * CNES do Solicitante — campo adicionado via JSON (cnes_solicitante) -->
           <div class="col-span-12 md:col-span-3 border-b border-gray-400 p-2">
             <label for="cnesSolicitante" class="text-[11px] font-bold uppercase text-gray-600">
               CNES do solicitante
@@ -265,7 +242,6 @@
             />
           </div>
 
-          <!-- Campo 14 – Nome do Profissional Solicitante -->
           <div class="col-span-12 md:col-span-6 border-r border-b border-gray-400 p-2">
             <label
               for="nomeProfissionalSolicitante"
@@ -282,7 +258,6 @@
             />
           </div>
 
-          <!-- Campo 15 – Conselho Profissional -->
           <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
             <label for="conselhoProfissional" class="text-[11px] font-bold uppercase text-gray-600">
               15 - Conselho
@@ -296,7 +271,6 @@
             />
           </div>
 
-          <!-- Campo 16 – Número no Conselho -->
           <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
             <label for="numeroConselho" class="text-[11px] font-bold uppercase text-gray-600">
               16 - Número no conselho
@@ -310,7 +284,6 @@
             />
           </div>
 
-          <!-- Campo 17 – UF -->
           <div class="col-span-12 md:col-span-1 border-r border-b border-gray-400 p-2">
             <label for="ufConselho" class="text-[11px] font-bold uppercase text-gray-600">
               17 - UF
@@ -324,7 +297,6 @@
             />
           </div>
 
-          <!-- Campo 18 – Código CBO -->
           <div class="col-span-12 md:col-span-1 border-b border-gray-400 p-2">
             <label for="codigoCbo" class="text-[11px] font-bold uppercase text-gray-600">
               18 - CBO
@@ -340,16 +312,11 @@
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           DADOS DO HOSPITAL / LOCAL SOLICITADO / DADOS DE INTERNAÇÃO
-           Campos: 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33
-           ═══════════════════════════════════════════ -->
       <section class="border border-gray-400 bg-white">
         <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">
           Dados do Hospital / Local Solicitado / Dados de Internação
         </div>
         <div class="grid grid-cols-12">
-          <!-- Campo 19 – Código na Operadora / CNPJ -->
           <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
             <label for="codigoOperadoraCnpj" class="text-[11px] font-bold uppercase text-gray-600">
               19 - Código na operadora / CNPJ
@@ -363,8 +330,6 @@
             />
           </div>
 
-          <!-- Campo 20 – Nome do Hospital / Local Solicitado
-               CORRIGIDO: era solicitante.nome_contratado → executante.nome_contratado -->
           <div class="col-span-12 md:col-span-6 border-r border-b border-gray-400 p-2">
             <label for="nomeHospitalLocal" class="text-[11px] font-bold uppercase text-gray-600">
               20 - Nome do hospital / local
@@ -378,7 +343,6 @@
             />
           </div>
 
-          <!-- Campo 21 – Data Sugerida para Internação -->
           <div class="col-span-12 md:col-span-3 border-b border-gray-400 p-2">
             <label
               for="dataSugeridaInternacao"
@@ -394,8 +358,6 @@
             />
           </div>
 
-          <!-- Campo 22 – Caráter do Atendimento
-               CORRIGIDO: opções agora usam valores "1"/"2" conforme TISS (JSON tem "2") -->
           <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
             <label for="caraterAtendimento" class="text-[11px] font-bold uppercase text-gray-600">
               22 - Caráter do atendimento
@@ -411,8 +373,6 @@
             </select>
           </div>
 
-          <!-- Campo 23 – Tipo de Internação
-               CORRIGIDO: adicionado binding tipo_atendimento; opções com códigos TISS -->
           <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
             <label for="tipoInternacao" class="text-[11px] font-bold uppercase text-gray-600">
               23 - Tipo de internação
@@ -431,7 +391,6 @@
             </select>
           </div>
 
-          <!-- Campo 24 – Regime de Internação -->
           <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
             <label for="regimeInternacao" class="text-[11px] font-bold uppercase text-gray-600">
               24 - Regime de internação
@@ -448,7 +407,6 @@
             </select>
           </div>
 
-          <!-- Campo 25 – Quantidade de Diárias Solicitadas -->
           <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
             <label for="qtdeDiarias" class="text-[11px] font-bold uppercase text-gray-600">
               25 - Qtde de diárias
@@ -464,7 +422,6 @@
             />
           </div>
 
-          <!-- Campo 26 – Previsão de Uso de OPME -->
           <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
             <label for="usoOpme" class="text-[11px] font-bold uppercase text-gray-600">
               26 - Previsão de uso de OPME
@@ -480,7 +437,6 @@
             </select>
           </div>
 
-          <!-- Campo 27 – Previsão de Uso de Quimioterápico -->
           <div class="col-span-12 md:col-span-2 border-b border-gray-400 p-2">
             <label for="usoQuimioterapico" class="text-[11px] font-bold uppercase text-gray-600">
               27 - Previsão de quimioterápico
@@ -496,7 +452,6 @@
             </select>
           </div>
 
-          <!-- Campo 28 – Indicação Clínica -->
           <div class="col-span-12 border-b border-gray-400 p-2">
             <label for="indicacaoClinica" class="text-[11px] font-bold uppercase text-gray-600">
               28 - Indicação clínica
@@ -510,7 +465,6 @@
             ></textarea>
           </div>
 
-          <!-- Campo 29 – CID10 Principal -->
           <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
             <label for="cid10Principal" class="text-[11px] font-bold uppercase text-gray-600">
               29 - CID10 Principal (Opcional)
@@ -524,7 +478,6 @@
             />
           </div>
 
-          <!-- Campo 30 – CID10 (2) -->
           <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
             <label for="cid10Secundario" class="text-[11px] font-bold uppercase text-gray-600">
               30 - CID10 (2) (Opcional)
@@ -538,7 +491,6 @@
             />
           </div>
 
-          <!-- Campo 31 – CID10 (3) -->
           <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
             <label for="cid10Terceiro" class="text-[11px] font-bold uppercase text-gray-600">
               31 - CID10 (3) (Opcional)
@@ -553,7 +505,6 @@
             />
           </div>
 
-          <!-- Campo 32 – CID10 (4) -->
           <div class="col-span-12 md:col-span-3 border-b border-gray-400 p-2">
             <label for="cid10Quarto" class="text-[11px] font-bold uppercase text-gray-600">
               32 - CID10 (4) (Opcional)
@@ -568,7 +519,6 @@
             />
           </div>
 
-          <!-- Campo 33 – Indicação de Acidente -->
           <div class="col-span-12 border-b border-gray-400 p-2">
             <label for="indicacaoAcidente" class="text-[11px] font-bold uppercase text-gray-600">
               33 - Indicação de acidente (acidente ou doença relacionada)
@@ -588,11 +538,6 @@
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           PROCEDIMENTOS OU ITENS ASSISTENCIAIS SOLICITADOS
-           Campos: 34, 35, 36, 37, 38
-           CORRIGIDO: tabela fixa "22" (TUSS); IDs únicos por índice
-           ═══════════════════════════════════════════ -->
       <section class="border border-gray-400 bg-white">
         <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">
           Procedimentos ou Itens Assistenciais Solicitados
@@ -600,7 +545,6 @@
         <div class="grid grid-cols-12">
           @if (this.guiaResult?.procedimentos && this.guiaResult!.procedimentos!.length > 0) {
             @for (procedimento of this.guiaResult?.procedimentos; track $index; let idx = $index) {
-              <!-- Campo 34 – Tabela (código da tabela TUSS = 22) -->
               <div class="col-span-12 md:col-span-1 border-r border-b border-gray-400 p-2">
                 <label
                   [for]="'tabelaReferencia-' + idx"
@@ -617,7 +561,6 @@
                 />
               </div>
 
-              <!-- Campo 35 – Código do Procedimento ou Item Assistencial -->
               <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
                 <label
                   [for]="'codigoProcedimento-' + idx"
@@ -635,7 +578,6 @@
                 />
               </div>
 
-              <!-- Campo 36 – Descrição -->
               <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
                 <label
                   [for]="'descricaoProcedimento-' + idx"
@@ -653,7 +595,6 @@
                 />
               </div>
 
-              <!-- Campo 37 – Qtde Solicitada -->
               <div class="col-span-12 md:col-span-2 border-r border-b border-gray-400 p-2">
                 <label
                   [for]="'qtdeSolicitada-' + idx"
@@ -671,7 +612,6 @@
                 />
               </div>
 
-              <!-- Campo 38 – Qtde Autorizada -->
               <div class="col-span-12 md:col-span-2 border-b border-gray-400 p-2">
                 <label
                   [for]="'qtdeAutorizada-' + idx"
@@ -697,15 +637,9 @@
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           DADOS DA AUTORIZAÇÃO
-           Campos: 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49
-           CORRIGIDO: bindings de 42, 43, 44, 46
-           ═══════════════════════════════════════════ -->
       <section class="border border-gray-400 bg-white">
         <div class="bg-blue-900 text-white font-bold px-3 py-2 uppercase">Dados da Autorização</div>
         <div class="grid grid-cols-12">
-          <!-- Campo 39 – Data Provável da Admissão Hospitalar -->
           <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
             <label for="dataAdmissao" class="text-[11px] font-bold uppercase text-gray-600">
               39 - Data provável da admissão hospitalar
@@ -718,7 +652,6 @@
             />
           </div>
 
-          <!-- Campo 40 – Qtde Diárias Autorizadas -->
           <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
             <label
               for="qtdeDiariasAutorizadas"
@@ -736,7 +669,6 @@
             />
           </div>
 
-          <!-- Campo 41 – Tipo da Acomodação Autorizada -->
           <div class="col-span-12 md:col-span-4 border-b border-gray-400 p-2">
             <label for="tipoAcomodacao" class="text-[11px] font-bold uppercase text-gray-600">
               41 - Tipo da acomodação autorizada
@@ -752,8 +684,6 @@
             </select>
           </div>
 
-          <!-- Campo 42 – Código na Operadora / CNPJ Autorizado
-               CORRIGIDO: adicionado binding executante.codigo_na_operadora -->
           <div class="col-span-12 md:col-span-4 border-r border-b border-gray-400 p-2">
             <label
               for="codigoOperadoraAutorizada"
@@ -770,8 +700,6 @@
             />
           </div>
 
-          <!-- Campo 43 – Nome do Hospital / Local Autorizado
-               CORRIGIDO: adicionado binding executante.nome_contratado -->
           <div class="col-span-12 md:col-span-5 border-r border-b border-gray-400 p-2">
             <label for="hospitalAutorizado" class="text-[11px] font-bold uppercase text-gray-600">
               43 - Nome do hospital / local autorizado
@@ -785,8 +713,6 @@
             />
           </div>
 
-          <!-- Campo 44 – Código CNES
-               CORRIGIDO: binding era inexistente → executante.cnes_executante -->
           <div class="col-span-12 md:col-span-3 border-b border-gray-400 p-2">
             <label for="codigoCnes" class="text-[11px] font-bold uppercase text-gray-600">
               44 - Código CNES
@@ -800,7 +726,6 @@
             />
           </div>
 
-          <!-- Campo 45 – Observação / Justificativa -->
           <div class="col-span-12 border-b border-gray-400 p-2">
             <label
               for="observacaoJustificativa"
@@ -818,8 +743,6 @@
             ></textarea>
           </div>
 
-          <!-- Campo 46 – Data da Solicitação
-               CORRIGIDO: adicionado binding data_solicitacao -->
           <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
             <label for="dataSolicitacao" class="text-[11px] font-bold uppercase text-gray-600">
               46 - Data da solicitação
@@ -832,7 +755,6 @@
             />
           </div>
 
-          <!-- Campo 47 – Assinatura do Profissional Solicitante -->
           <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
             <label
               for="assinaturaProfissional"
@@ -849,7 +771,6 @@
             />
           </div>
 
-          <!-- Campo 48 – Assinatura do Beneficiário ou Responsável -->
           <div class="col-span-12 md:col-span-3 border-r border-b border-gray-400 p-2">
             <label
               for="assinaturaBeneficiario"
@@ -866,7 +787,6 @@
             />
           </div>
 
-          <!-- Campo 49 – Assinatura do Responsável pela Autorização -->
           <div class="col-span-12 md:col-span-3 border-b border-gray-400 p-2">
             <label
               for="assinaturaAutorizacao"
@@ -885,9 +805,8 @@
         </div>
       </section>
 
-      <!-- Botão Enviar -->
       <div class="flex justify-end pb-4">
-        <button class="btn btn-info" (click)="baixarJSON()">Baixar JSON</button>
+        <button class="btn btn-info bg-blue-900" (click)="baixarJSON()">Baixar JSON</button>
       </div>
     </form>
   </div>

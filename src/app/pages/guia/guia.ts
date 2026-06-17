@@ -27,7 +27,7 @@ export class Guia {
   constructor() {
     const g = this.guiaResult;
 
-    this.guiaModel = signal<GuiaSADT>({
+    this.guiaModel = signal({
       numero_guia: g?.numero_guia || '',
       numero_guia_prestador: g?.numero_guia_prestador || '',
       data_solicitacao: this.toDateInputValue(g?.data_solicitacao),
@@ -41,6 +41,7 @@ export class Guia {
       },
       beneficiario: {
         numero_carteira: g?.beneficiario?.numero_carteira || '',
+        validade_carteira: '',
         nome: g?.beneficiario?.nome || '',
         data_nascimento: this.toDateInputValue(g?.beneficiario?.data_nascimento),
         cns: g?.beneficiario?.cns || '',
@@ -62,11 +63,23 @@ export class Guia {
         codigo_na_operadora: g?.executante?.codigo_na_operadora || '',
       },
       indicacao_clinica: g?.indicacao_clinica || '',
+      data_internacao: '',
+      regime_internacao: '',
+      qtde_diarias: '',
+      uso_opme: '',
+      uso_quimioterapico: '',
       cid_principal: g?.cid_principal || '',
       cid_secundario: g?.cid_secundario || '',
+      cid_terciario: '',
+      cid_quartenario: '',
       carater_atendimento: g?.carater_atendimento || '',
       tipo_atendimento: g?.tipo_atendimento || '',
+      indicacao_acidente: '',
       procedimentos: [],
+      data_adimissao: '',
+      diarias_autorizada: '',
+      acomodacao: '',
+      observacoes: '',
       confianca_extracao: g?.confianca_extracao || 0,
       metodo_extracao: g?.metodo_extracao || '',
       campos_pendentes: [],
@@ -91,7 +104,7 @@ export class Guia {
       max(schemaPath.cid_secundario!, 4);
     });
   }
-
+  // cid 3 e 4
   baixarJSON(value = this.guiaModel()) {
     const json = JSON.stringify(value, null, 2);
     const blob = new Blob([json], { type: 'application/json' });

@@ -1,5 +1,5 @@
 <div
-  class="toast bg-transparent toast-center toast-bottom"
+  class="toast bg-transparent toast-center toast-top"
   [class.hidden]="notificationService.notifications().length === 0"
 >
   @for (notification of notificationService.notifications(); track $index) {

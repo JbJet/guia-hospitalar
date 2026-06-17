@@ -139,9 +139,9 @@
               8 - Validade da carteira
             </label>
             <input
+              [formField]="guiaForm.beneficiario!.validade_carteira"
               type="date"
               id="validadeCarteira"
-              name="validadeCarteira"
               class="w-full text-lg font-semibold outline-none bg-transparent"
             />
           </div>
@@ -351,9 +351,9 @@
               21 - Data sugerida para internação
             </label>
             <input
+              [formField]="guiaForm.data_internacao!"
               type="date"
               id="dataSugeridaInternacao"
-              name="dataSugeridaInternacao"
               class="w-full text-lg font-semibold outline-none bg-transparent"
             />
           </div>
@@ -396,8 +396,8 @@
               24 - Regime de internação
             </label>
             <select
+              [formField]="guiaForm.regime_internacao!"
               id="regimeInternacao"
-              name="regimeInternacao"
               class="w-full text-lg font-semibold outline-none bg-transparent"
             >
               <option value="">-</option>
@@ -412,11 +412,9 @@
               25 - Qtde de diárias
             </label>
             <input
+              [formField]="guiaForm.qtde_diarias!"
               type="number"
               id="qtdeDiarias"
-              name="qtdeDiarias"
-              min="1"
-              max="999"
               placeholder="00"
               class="w-full text-lg font-semibold outline-none bg-transparent"
             />
@@ -427,8 +425,8 @@
               26 - Previsão de uso de OPME
             </label>
             <select
+              [formField]="guiaForm.uso_opme!"
               id="usoOpme"
-              name="usoOpme"
               class="w-full text-lg font-semibold outline-none bg-transparent"
             >
               <option value="">-</option>
@@ -442,8 +440,8 @@
               27 - Previsão de quimioterápico
             </label>
             <select
+              [formField]="guiaForm.uso_quimioterapico!"
               id="usoQuimioterapico"
-              name="usoQuimioterapico"
               class="w-full text-lg font-semibold outline-none bg-transparent"
             >
               <option value="">-</option>
@@ -496,10 +494,9 @@
               31 - CID10 (3) (Opcional)
             </label>
             <input
+              [formField]="guiaForm.cid_terciario!"
               type="text"
               id="cid10Terceiro"
-              name="cid10Terceiro"
-              maxlength="4"
               placeholder="A000"
               class="w-full text-lg font-semibold uppercase outline-none bg-transparent"
             />
@@ -510,10 +507,9 @@
               32 - CID10 (4) (Opcional)
             </label>
             <input
+              [formField]="guiaForm.cid_quartenario!"
               type="text"
               id="cid10Quarto"
-              name="cid10Quarto"
-              maxlength="4"
               placeholder="A000"
               class="w-full text-lg font-semibold uppercase outline-none bg-transparent"
             />
@@ -524,8 +520,8 @@
               33 - Indicação de acidente (acidente ou doença relacionada)
             </label>
             <select
+              [formField]="guiaForm.indicacao_acidente!"
               id="indicacaoAcidente"
-              name="indicacaoAcidente"
               class="w-full text-lg font-semibold outline-none bg-transparent"
             >
               <option value="">-</option>
@@ -645,9 +641,9 @@
               39 - Data provável da admissão hospitalar
             </label>
             <input
+              [formField]="guiaForm.data_adimissao!"
               type="date"
               id="dataAdmissao"
-              name="dataAdmissao"
               class="w-full text-lg font-semibold outline-none bg-transparent"
             />
           </div>
@@ -660,11 +656,9 @@
               40 - Qtde diárias autorizadas
             </label>
             <input
+              [formField]="guiaForm.diarias_autorizada!"
               type="number"
               id="qtdeDiariasAutorizadas"
-              name="qtdeDiariasAutorizadas"
-              min="0"
-              max="999"
               class="w-full text-lg font-semibold outline-none bg-transparent"
             />
           </div>
@@ -674,8 +668,8 @@
               41 - Tipo da acomodação autorizada
             </label>
             <select
+              [formField]="guiaForm.acomodacao!"
               id="tipoAcomodacao"
-              name="tipoAcomodacao"
               class="w-full text-lg font-semibold outline-none bg-transparent"
             >
               <option value="">-</option>
@@ -734,9 +728,8 @@
               45 - Observação / Justificativa
             </label>
             <textarea
+              [formField]="guiaForm.observacoes!"
               id="observacaoJustificativa"
-              name="observacaoJustificativa"
-              maxlength="1000"
               rows="4"
               placeholder="Digite observações ou justificativas"
               class="w-full text-lg font-semibold outline-none resize-none bg-transparent"
